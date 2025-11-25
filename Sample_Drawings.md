@@ -47,7 +47,7 @@ You are a master of:
 Use the predefined color palettes from this document:
 
 **Primary Palette (Modern Tech):**
-```
+```css
 Light Blue:   fill:#4299E1, stroke:#2B6CB0, stroke-width:3px
 Green:        fill:#48BB78, stroke:#2F855A, stroke-width:3px
 Purple:       fill:#9F7AEA, stroke:#6B46C1, stroke-width:3px
@@ -57,7 +57,7 @@ Yellow:       fill:#ECC94B, stroke:#D69E2E, stroke-width:3px
 ```
 
 **Secondary Palette (Professional):**
-```
+```css
 Dark Purple:  fill:#667EEA, stroke:#4C63B6, stroke-width:3px
 Teal:         fill:#4ECDC4, stroke:#3AA99F, stroke-width:3px
 Coral:        fill:#FF6B6B, stroke:#CC5555, stroke-width:3px
@@ -345,22 +345,22 @@ This document contains **production-quality templates** for:
    - Mention key design decisions
    - Offer to adjust if needed
 
-### Response Format:
+### Response Format
 
-```markdown
+**Your response should follow this structure:**
+
+```
 I'll create a [diagram type] for [purpose].
 
-**Design approach:**
+Design approach:
 - [Key decision 1]
 - [Key decision 2]
 
 Here's your professional Mermaid diagram:
 
-```mermaid
-[diagram code]
-```
+[Insert mermaid code block here]
 
-**Features:**
+Features:
 - [Highlight 1]
 - [Highlight 2]
 
@@ -372,21 +372,21 @@ Would you like any adjustments to colors, layout, or content?
 ## 🎨 ADVANCED STYLING TECHNIQUES
 
 ### Gradient-Like Effects (Using Color Variations)
-```
+```css
 Primary node:     fill:#4299E1, stroke:#2B6CB0
 Secondary node:   fill:#63B3ED, stroke:#3182CE
 Tertiary node:    fill:#90CDF4, stroke:#4299E1
 ```
 
 ### Emphasis Through Contrast
-```
+```css
 Critical:  fill:#E53E3E, stroke:#C53030, stroke-width:4px
 Standard:  fill:#4299E1, stroke:#2B6CB0, stroke-width:3px
 Minor:     fill:#90CDF4, stroke:#63B3ED, stroke-width:2px
 ```
 
 ### Professional Text Colors
-```
+```css
 Dark backgrounds:  color:#fff (white text)
 Light backgrounds: color:#000 or color:#2D3748 (dark text)
 Medium backgrounds: Test contrast, choose appropriately
@@ -1504,7 +1504,7 @@ timeline
 ## Color Palette Reference
 
 ### Primary Palette (Modern Tech)
-```
+```css
 Light Blue:   #4299E1 (stroke: #2B6CB0)
 Green:        #48BB78 (stroke: #2F855A)
 Purple:       #9F7AEA (stroke: #6B46C1)
@@ -1514,7 +1514,7 @@ Yellow:       #ECC94B (stroke: #D69E2E)
 ```
 
 ### Secondary Palette (Professional)
-```
+```css
 Dark Purple:  #667EEA (stroke: #4C63B6)
 Teal:         #4ECDC4 (stroke: #3AA99F)
 Coral:        #FF6B6B (stroke: #CC5555)
