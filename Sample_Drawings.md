@@ -326,9 +326,7 @@ sequenceDiagram
     
     alt Payment approved
         B-->>P: Approved
-        deactivate B
         P-->>W: Payment success
-        deactivate P
         
         W->>O: Confirm order
         O->>N: Send confirmation
@@ -337,30 +335,24 @@ sequenceDiagram
         deactivate N
         
         O-->>W: Order confirmed
-        deactivate O
         W-->>C: Success page
         
-        rect rgb(200, 255, 200)
-        Note over C,N: Payment Successful
-        end
+        Note over C,N: ✓ Payment Successful
         
     else Payment declined
         B-->>P: Declined
-        deactivate B
         P-->>W: Payment failed
-        deactivate P
         
         W->>O: Cancel order
         O-->>W: Order cancelled
-        deactivate O
-        
         W-->>C: Payment failed
         
-        rect rgb(255, 200, 200)
-        Note over C,N: Payment Declined
-        end
+        Note over C,N: ✗ Payment Declined
     end
     
+    deactivate B
+    deactivate P
+    deactivate O
     deactivate W
 ```
 
@@ -871,56 +863,94 @@ gantt
 
 ### Example 8.1: GitFlow Branch Strategy
 ```mermaid
-gitgraph
-    commit id: "Initial commit"
-    commit id: "Setup project"
+graph TB
+    subgraph Main["Main Branch (Production)"]
+        M1["Initial commit"]
+        M2["v1.0.0 Release"]
+        M3["v1.0.1 Hotfix"]
+    end
     
-    branch develop
-    checkout develop
-    commit id: "Add config"
+    subgraph Develop["Develop Branch"]
+        D1["Setup config"]
+        D2["Merge: user-auth"]
+        D3["Merge: products"]
+        D4["Merge: release/1.0"]
+        D5["Merge: hotfix"]
+    end
     
-    branch feature/user-auth
-    checkout feature/user-auth
-    commit id: "Add user model"
-    commit id: "Add login API"
-    commit id: "Add JWT auth"
+    subgraph Feature1["Feature: user-auth"]
+        F1["Add user model"]
+        F2["Add login API"]
+        F3["Add JWT auth"]
+    end
     
-    checkout develop
-    branch feature/products
-    checkout feature/products
-    commit id: "Add product model"
-    commit id: "Add CRUD APIs"
+    subgraph Feature2["Feature: products"]
+        F4["Add product model"]
+        F5["Add CRUD APIs"]
+        F6["Add search"]
+    end
     
-    checkout develop
-    merge feature/user-auth tag: "v0.1.0"
+    subgraph Release["Release: 1.0"]
+        R1["Bump version"]
+        R2["Update docs"]
+    end
     
-    checkout feature/products
-    commit id: "Add search"
+    subgraph Hotfix["Hotfix: critical-bug"]
+        H1["Fix security issue"]
+    end
     
-    checkout develop
-    merge feature/products tag: "v0.2.0"
+    M1 --> D1
+    D1 --> F1
+    F1 --> F2
+    F2 --> F3
+    F3 --> D2
     
-    branch release/1.0
-    checkout release/1.0
-    commit id: "Bump version"
-    commit id: "Update docs"
+    D1 --> F4
+    F4 --> F5
+    D2 --> F6
+    F5 --> F6
+    F6 --> D3
     
-    checkout main
-    merge release/1.0 tag: "v1.0.0"
+    D3 --> R1
+    R1 --> R2
+    R2 --> M2
+    R2 --> D4
     
-    checkout develop
-    merge release/1.0
+    M2 --> H1
+    H1 --> M3
+    H1 --> D5
     
-    checkout main
-    branch hotfix/critical-bug
-    commit id: "Fix security issue"
+    style M1 fill:#E53E3E,stroke:#C53030,stroke-width:3px,color:#fff
+    style M2 fill:#E53E3E,stroke:#C53030,stroke-width:3px,color:#fff
+    style M3 fill:#E53E3E,stroke:#C53030,stroke-width:3px,color:#fff
     
-    checkout main
-    merge hotfix/critical-bug tag: "v1.0.1"
+    style D1 fill:#805AD5,stroke:#6B46C1,stroke-width:2px,color:#fff
+    style D2 fill:#805AD5,stroke:#6B46C1,stroke-width:2px,color:#fff
+    style D3 fill:#805AD5,stroke:#6B46C1,stroke-width:2px,color:#fff
+    style D4 fill:#805AD5,stroke:#6B46C1,stroke-width:2px,color:#fff
+    style D5 fill:#805AD5,stroke:#6B46C1,stroke-width:2px,color:#fff
     
-    checkout develop
-    merge hotfix/critical-bug
+    style F1 fill:#48BB78,stroke:#2F855A,stroke-width:2px,color:#fff
+    style F2 fill:#48BB78,stroke:#2F855A,stroke-width:2px,color:#fff
+    style F3 fill:#48BB78,stroke:#2F855A,stroke-width:2px,color:#fff
+    
+    style F4 fill:#4299E1,stroke:#2B6CB0,stroke-width:2px,color:#fff
+    style F5 fill:#4299E1,stroke:#2B6CB0,stroke-width:2px,color:#fff
+    style F6 fill:#4299E1,stroke:#2B6CB0,stroke-width:2px,color:#fff
+    
+    style R1 fill:#ED8936,stroke:#C05621,stroke-width:2px,color:#fff
+    style R2 fill:#ED8936,stroke:#C05621,stroke-width:2px,color:#fff
+    
+    style H1 fill:#F56565,stroke:#E53E3E,stroke-width:2px,color:#fff
 ```
+
+**Branch Legend:**
+- 🔴 **Main**: Production-ready code
+- 🟣 **Develop**: Integration branch
+- 🟢 **Feature/user-auth**: Authentication feature
+- 🔵 **Feature/products**: Product catalog feature
+- 🟠 **Release**: Release preparation
+- 🔴 **Hotfix**: Critical bug fixes
 
 ---
 
